@@ -17,3 +17,9 @@ cd my-package
 npm i
 npm test
 ```
+
+### Add your own remote
+```
+git remote rename origin starter
+git remote add origin <your-remote>
+```
