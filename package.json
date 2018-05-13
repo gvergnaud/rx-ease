@@ -1,8 +1,7 @@
 {
-  "name": "npm-package-starter",
+  "name": "rx-ease",
   "version": "0.1.0",
-  "description":
-    "A boilerplate to help you get started creating a npm package.",
+  "description": "a spring animation operator for rxjs",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -12,7 +11,7 @@
     "test": "jest"
   },
   "author": "Gabriel Vergnaud <github.com/gvergnaud>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
@@ -32,5 +31,8 @@
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^3.0.0"
+  },
+  "peerDependencies": {
+    "rxjs": "^6.1.0"
   }
 }

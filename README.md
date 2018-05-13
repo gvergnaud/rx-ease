@@ -1,25 +1,56 @@
-# npm package starter
+# rx-ease
 
-A boilerplate to help you get started creating a npm package.
-
-## includes
-
-* Rollup
-* Babel
-* Prettier
-* Jest
-
-## How to use
+Interpolate the values of your rxjs streams!
 
 ```
-git clone https://github.com/gvergnaud/npm-package-starter.git my-package
-cd my-package
-npm i
-npm test
+npm install rxjs rx-ease
 ```
 
-### Add your own remote
-```
-git remote rename origin starter
-git remote add origin <your-remote>
+### example
+
+```js
+import { interval } from 'rxjs'
+import { take, map, startWith } from 'rxjs/operators'
+import ease from 'rx-ease'
+
+const draw = x =>
+  Array(Math.floor(x))
+    .fill('#')
+    .join('')
+
+const progress$ = interval(1000).pipe(
+  take(1),
+  map(() => 100),
+  startWith(0),
+  ease(120, 18),
+  map(draw)
+)
+
+progress$.subscribe(progress => console.log(progress))
+// will log =>
+// #
+// ####
+// ########
+// #############
+// #################
+// ######################
+// ##########################
+// ##############################
+// ##################################
+// ######################################
+// #########################################
+// ############################################
+// ##############################################
+// ################################################
+// ##################################################
+// ####################################################
+// #####################################################
+// ######################################################
+// #######################################################
+// ########################################################
+// #########################################################
+// ##########################################################
+// ##########################################################
+// ##########################################################
+// ##########################################################
 ```
