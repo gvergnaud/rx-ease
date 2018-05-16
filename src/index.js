@@ -1,4 +1,16 @@
-import { Observable } from 'rxjs'
+import { Observable, of, combineLatest } from 'rxjs'
+
+export const mapValues = (f, obj) =>
+  Object.keys(obj).reduce((acc, k) => ({ ...acc, [k]: f(obj[k], k) }), {})
+
+const map = f => stream =>
+  new Observable(observer =>
+    stream.subscribe({
+      complete: () => observer.complete(),
+      error: e => observer.error(e),
+      next: x => observer.next(f(x))
+    })
+  )
 
 const switchMap = switchMapper => stream => {
   let subscription
@@ -94,7 +106,8 @@ function stepper(
   return reusedTuple
 }
 
-const ease = (stiffness, damping) => {
+// createEasedStream :: (number, number) -> number -> Observable number
+const createEasedStream = (stiffness, damping) => {
   let value
   let velocity = 0
   let destValue
@@ -132,12 +145,36 @@ const ease = (stiffness, damping) => {
   }
 }
 
+const combineLatestObject = obj =>
+  combineLatest(
+    ...Object.keys(obj).map(k => obj[k].pipe(map(v => [k, v]))),
+    (...entries) => entries.reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {})
+  )
+
+const createEase = (stiffness, damping) => {
+  if (typeof stiffness === 'object') {
+    const eases = mapValues(
+      ([stiffness, damping]) => createEasedStream(stiffness, damping),
+      stiffness
+    )
+
+    return values =>
+      combineLatestObject(
+        mapValues((x, k) => (eases[k] ? eases[k](x) : of(x)), values)
+      )
+  }
+
+  return createEasedStream(stiffness, damping)
+}
+
 const cache = new Map()
 
 const getEase = (stiffness, damping, id) => {
-  if (id === undefined) return ease(stiffness, damping)
+  if (id === undefined && typeof stiffness === 'object') id = damping
 
-  if (!cache.has(id)) cache.set(id, ease(stiffness, damping))
+  if (id === undefined) return createEase(stiffness, damping)
+
+  if (!cache.has(id)) cache.set(id, createEase(stiffness, damping))
   return cache.get(id)
 }
 

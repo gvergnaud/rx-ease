@@ -54,3 +54,23 @@ progress$.subscribe(progress => console.log(progress))
 // ##########################################################
 // ##########################################################
 ```
+
+```js
+import { fromEvent } from 'rxjs'
+import { map } from 'rxjs/operators'
+import ease from 'rx-ease'
+
+const circle = document.querySelector('.circle')
+
+const position$ = fromEvent(document, 'click').pipe(
+  map(e => ({ x: e.clientX, y: e.clientY })),
+  ease({
+    x: [120, 18],
+    y: [120, 18]
+  })
+)
+
+position$.subscribe(({ x, y }) => {
+  circle.style.transform = `translate(${x}px, ${y}px)`
+})
+```
