@@ -1,6 +1,6 @@
 {
   "name": "rx-ease",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a spring animation operator for rxjs",
   "main": "lib/index.js",
   "scripts": {
@@ -9,6 +9,10 @@
       "npm run clean && BABEL_ENV=production rollup --config rollup.config.js",
     "prepare": "npm run clean && npm run build",
     "test": "jest"
+  },
+  "repository": {
+    "url": "https://github.com/gvergnaud/rx-ease.git",
+    "type": "git"
   },
   "author": "Gabriel Vergnaud <github.com/gvergnaud>",
   "license": "MIT",
