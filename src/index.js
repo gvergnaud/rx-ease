@@ -151,7 +151,24 @@ const combineLatestObject = obj =>
     (...entries) => entries.reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {})
   )
 
+const combineLatestArray = xs$ =>
+  combineLatest(
+    ...xs$,
+    (...xs) => xs
+  )
+
 const createEase = (stiffness, damping) => {
+  if (Array.isArray(stiffness)) {
+    const eases = stiffness.map(
+      ([stiffness, damping]) => createEasedStream(stiffness, damping)
+    )
+
+    return values =>
+      combineLatestArray(
+        values.map((x, i) => (eases[i] ? eases[i](x) : of(x)))
+      )
+  }
+
   if (typeof stiffness === 'object') {
     const eases = mapValues(
       ([stiffness, damping]) => createEasedStream(stiffness, damping),
