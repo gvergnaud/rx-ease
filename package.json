@@ -1,12 +1,11 @@
 {
   "name": "rx-ease",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "a spring animation operator for rxjs",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
-    "build":
-      "npm run clean && BABEL_ENV=production rollup --config rollup.config.js",
+    "build": "npm run clean && BABEL_ENV=production rollup --config rollup.config.js",
     "prepare": "npm run clean && npm run build",
     "test": "jest"
   },
