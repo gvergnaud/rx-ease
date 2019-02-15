@@ -7,7 +7,7 @@ const createConfig = (input, output, additionnalPlugins = []) => ({
   input,
   output: {
     file: output,
-    format: 'es'
+    format: 'cjs'
   },
   plugins: [
     nodeResolve({
