@@ -1,5 +1,12 @@
 import { Observable } from 'rxjs';
 
+export const presets = {
+  noWobble: [170, 26],
+  gentle: [120, 14],
+  wobbly: [180, 12],
+  stiff: [210, 20]
+};
+
 export const mapValues = (f, obj) =>
   Object.keys(obj).reduce((acc, k) => ({ ...acc, [k]: f(obj[k], k) }), {});
 
@@ -232,8 +239,8 @@ const createEase = (stiffness, damping) =>
   Array.isArray(stiffness)
     ? createEasedStreamArray(stiffness)
     : typeof stiffness === 'object'
-    ? createEasedStreamObject(stiffness)
-    : createEasedStream(stiffness, damping);
+      ? createEasedStreamObject(stiffness)
+      : createEasedStream(stiffness, damping);
 
 const cache = new Map();
 
