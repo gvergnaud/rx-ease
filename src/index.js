@@ -54,7 +54,7 @@ const rafThrottle = f => {
   return (..._args) => {
     if (isFirst) {
       isFirst = false;
-      f(...args);
+      f(..._args);
     } else {
       args = _args;
       if (!shouldExecute) return;
