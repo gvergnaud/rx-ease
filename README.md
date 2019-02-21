@@ -105,7 +105,7 @@ const easedInterval$ = interval(1000).pipe(
 
 ```js
 import { fromEvent } from 'rxjs'
-import ease, { presets } from 'rx-ease'
+import ease from 'rx-ease'
 
 const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
   map(e => [e.clientX, e.clientY]),
@@ -120,7 +120,7 @@ const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
 
 ```js
 import { fromEvent } from 'rxjs'
-import ease, { presets } from 'rx-ease'
+import ease from 'rx-ease'
 
 const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
   map(e => ({
