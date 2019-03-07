@@ -145,7 +145,7 @@ import ease, { presets } from 'rx-ease'
 
 interval(1000).pipe(
   map(x * 100),
-  ease(presets.stiff)
+  ease(...presets.stiff)
 )
 ```
 
