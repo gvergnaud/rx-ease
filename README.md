@@ -2,7 +2,8 @@
 
 An operator to interpolate the values of your rxjs streams!
 
-- Performant, in most case it should run at **60fps**.
+- **Typescript** support.
+- Performant, **60fps**.
 - Emits on **requestAnimationFrame**.
 - Works with any kind of data structures (Object, arrays, single values).
 
@@ -89,7 +90,7 @@ position$.subscribe(({ x, y }) => {
 #### type Config = [number, number]
 Similarly to [react-motion](https://github.com/chenglou/react-motion), rx-ease is a **spring animation** operator. To configure the animation you need to pass a stiffness and a damping value in an array like `[stiffness, damping]` (for example `[120, 18]`).
 
-#### ease :: Config -> number -> Observable number
+#### ease: (config: Config) => (stream: Observable<number>) => Observable<number>
 
 ```js
 import { interval } from 'rxjs'
@@ -101,7 +102,7 @@ const easedInterval$ = interval(1000).pipe(
 )
 ```
 
-#### ease :: [Config] -> [number] -> Observable [number]
+#### ease: (config: Config[]) => (stream: Observable<number[]>) => Observable<number[]>
 
 ```js
 import { fromEvent } from 'rxjs'
@@ -116,7 +117,7 @@ const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
 )
 ```
 
-#### ease :: { key: Config } -> { key: number } -> Observable { key: number }
+#### ease: (config: { [k: string]: Config }) => Observable<{ [k: string]: Config }> => Observable<{ [k: string]: Config }>
 
 ```js
 import { fromEvent } from 'rxjs'
