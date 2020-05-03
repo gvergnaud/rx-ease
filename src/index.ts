@@ -1,4 +1,4 @@
-import { MonoTypeOperatorFunction, Observable } from 'rxjs'
+import { MonoTypeOperatorFunction, Observable, Subscription } from 'rxjs'
 
 export const presets = {
   noWobble: [170, 26],
@@ -19,9 +19,9 @@ export const mapValues = <A, B, K extends string>(
 const switchMap = <A, B>(switchMapper: (value: A) => Observable<B>) => (
   stream: Observable<A>
 ): Observable<B> => {
-  let subscription
+  let subscription: Subscription
 
-  return new Observable(observer => {
+  return new Observable((observer: any) => {
     let isOuterStreamComplete = false
     let isInnerStreamComplete = false
 
@@ -270,7 +270,7 @@ function createEase(
     ? createEasedStreamArray(stiffness)
     : typeof stiffness === 'object'
     ? createEasedStreamObject(stiffness)
-    : createEasedStream(stiffness, damping)
+    : createEasedStream(stiffness, damping as number)
 }
 
 const cache = new Map()
