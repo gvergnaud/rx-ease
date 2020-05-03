@@ -1,5 +1,5 @@
 {
-  "presets": [["env", { "modules": false }]],
+  "presets": [["env", { "modules": false }], "@babel/preset-typescript"],
   "plugins": [
     "transform-es2017-object-entries",
     "transform-object-rest-spread"

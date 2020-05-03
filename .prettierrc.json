@@ -1,9 +1,9 @@
 {
-  "useTabs": false,
+  "jsxBracketSameLine": false,
+  "semi": false,
   "printWidth": 80,
   "tabWidth": 2,
   "singleQuote": true,
-  "trailingComma": "none",
-  "jsxBracketSameLine": false,
-  "noSemi": true
+  "arrowParens": "avoid",
+  "trailingComma": "none"
 }

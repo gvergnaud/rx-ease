@@ -25,6 +25,6 @@ const createConfig = (input, output, additionnalPlugins = []) => ({
 })
 
 export default [
-  createConfig('src/index.js', 'lib/index.js'),
-  createConfig('src/index.js', 'lib/index.min.js', [uglify()])
+  createConfig('src/index.ts', 'lib/index.js'),
+  createConfig('src/index.ts', 'lib/index.min.js', [uglify()])
 ]
