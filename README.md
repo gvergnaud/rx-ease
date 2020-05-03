@@ -117,7 +117,7 @@ const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
 )
 ```
 
-#### ease: (config: { [k: string]: Config }) => Observable<{ [k: string]: Config }> => Observable<{ [k: string]: Config }>
+#### ease: (config: Record<K, Config>) => (stream: Observable<Record<K, Config>>) => Observable<Record<K, Config>>
 
 ```js
 import { fromEvent } from 'rxjs'
