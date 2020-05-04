@@ -17,6 +17,10 @@ npm install rxjs rx-ease
 ## The gist
 
 #### Interpolate a single value
+
+You can simply use the `ease` operator in an observable pipeline. You need to configure the ease operator with two numbers: a **stiffness** value and a **damping** value. See [the presets sections](https://github.com/gvergnaud/rx-ease#presets) bellow for example of configurations.
+
+
 ```js
 import { interval } from 'rxjs'
 import { take, map, startWith } from 'rxjs/operators'
@@ -28,9 +32,8 @@ const draw = x =>
     .join('')
 
 const progress$ = interval(1000).pipe(
-  take(1),
-  map(() => 100),
   startWith(0),
+  map(i => * 100),
   ease(120, 18),
   map(draw)
 )
@@ -64,7 +67,10 @@ progress$.subscribe(progress => console.log(progress))
 // ##########################################################
 ```
 
-#### Interpolate several values of an object
+#### Interpolate several properties of an object
+
+If your Observable emits an object instead of a single number, you can use the `ease` operator to interpolate the values of one or several properties of this object. Just pass to `ease` an object of the same shape of the observed value with a config for each property you want to ease.
+
 ```js
 import { fromEvent } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -87,11 +93,20 @@ position$.subscribe(({ x, y }) => {
 
 ## Api
 
-
-#### type Config = [number, number]
 Similarly to [react-motion](https://github.com/chenglou/react-motion), rx-ease is a **spring animation** operator. To configure the animation you need to pass a stiffness and a damping value in an array like `[stiffness, damping]` (for example `[120, 18]`).
 
-#### ease: (config: Config) => (stream: Observable\<number>) => Observable\<number>
+
+
+#### Easing a single value
+
+##### signature
+
+```ts
+type Config = [number, number]
+ease: (config: Config) => (stream: Observable<number>) => Observable<number>
+```
+
+##### example
 
 ```js
 import { interval } from 'rxjs'
@@ -103,7 +118,16 @@ const easedInterval$ = interval(1000).pipe(
 )
 ```
 
-#### ease: (config: Config[]) => (stream: Observable<number[]>) => Observable<number[]>
+
+#### Easing values of an array
+
+##### signature
+
+```ts
+ease: (config: Config[]) => (stream: Observable<number[]>) => Observable<number[]>
+```
+
+##### example
 
 ```js
 import { fromEvent } from 'rxjs'
@@ -118,7 +142,15 @@ const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
 )
 ```
 
-#### ease: (config: Record<K, Config>) => (stream: Observable<Record<K, Config>>) => Observable<Record<K, Config>>
+#### Easing properties of an object
+
+##### signature
+
+```ts
+ease: (config: Record<K, Config>) => (stream: Observable<Record<K, Config>>) => Observable<Record<K, Config>>
+```
+
+##### example
 
 ```js
 import { fromEvent } from 'rxjs'
