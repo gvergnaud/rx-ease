@@ -69,7 +69,7 @@ progress$.subscribe(progress => console.log(progress))
 
 #### Interpolate several properties of an object
 
-If your Observable emits an object instead of a single number, you can use the `ease` operator to interpolate the values of one or several properties of this object. Just pass to `ease` an object of the same shape of the observed value with a config for each property you want to ease.
+If your Observable emits an object instead of a single number, you can use the `ease` operator to interpolate the values of one or several properties of this object. Just pass to `ease` an object of the same shape as the observed value with a config for each property you want to ease.
 
 ```js
 import { fromEvent } from 'rxjs'
