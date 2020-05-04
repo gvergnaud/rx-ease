@@ -1,6 +1,6 @@
 # rx-ease
 
-An animation operator for RxJs streams!
+An animation operator for RxJs Observables!
 
 - **Physic based**. The animation seemlessly interupts itself if a new value is emitted before it completes.
 - **Performant**, emits on **requestAnimationFrame** at 60fps.
