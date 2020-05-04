@@ -3,10 +3,9 @@
 An operator to interpolate between values in your rxjs streams!
 
 - **Physic based**. The animation seemlessly interupts itself if a new value is emitted before it completes.
-- Performant, **60fps**.
-- Emits on **requestAnimationFrame**.
-- **Typescript** support.
-- Works with any kind of data structures (Object, arrays, single values).
+- **Performant**, emits on **requestAnimationFrame** at 60fps.
+- **Typescript** first class support.
+- **Versatile**, Works with any kind of data structures (Object, arrays, single values).
 
 ## Install
 
