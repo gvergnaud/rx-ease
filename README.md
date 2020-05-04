@@ -1,6 +1,6 @@
 # rx-ease
 
-An operator to interpolate between values in your rxjs streams!
+An animation operator for RxJs streams!
 
 - **Physic based**. The animation seemlessly interupts itself if a new value is emitted before it completes.
 - **Performant**, emits on **requestAnimationFrame** at 60fps.
@@ -15,7 +15,7 @@ npm install rxjs rx-ease
 
 ## The gist
 
-#### Interpolate a single value
+#### Interpolate between emitted numbers
 
 You can simply use the `ease` operator in an observable pipeline. You need to configure the ease operator with two numbers: a **stiffness** value and a **damping** value. See [the presets sections](https://github.com/gvergnaud/rx-ease#presets) bellow for example of configurations.
 
