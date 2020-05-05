@@ -158,7 +158,7 @@ import ease from 'rx-ease'
 const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
   map(e => ({
     x: e.clientX,
-    y: e.clientY]
+    y: e.clientY
   }),
   ease({
     x: [170, 26],
