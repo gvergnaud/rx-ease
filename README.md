@@ -177,7 +177,7 @@ const easedMousePosition$ = fromEvent(window, 'mousemove').pipe(
 import ease, { presets } from 'rx-ease'
 
 interval(1000).pipe(
-  map(x * 100),
+  map(x => x * 100),
   ease(...presets.stiff)
 )
 ```
